@@ -112,4 +112,4 @@ dmypy.json
 
 #mac
 .DS_Store
-.db
+*.db
