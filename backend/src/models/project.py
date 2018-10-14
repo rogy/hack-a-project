@@ -5,10 +5,10 @@ class ProjectModel(db.Model):
     """docstring for ProjectModel"""
 
     __tablename__ = 'projects'
-    id = db.Column(db.Integer, primary_key=True)
+    pid = db.Column(db.Integer, primary_key=True)
     pname = db.Column(db.String(80))
     owner = db.Column(db.String(80))
-    # roles = db.Column()
+    # description = db.Column(db.String())
 
     def __init__(self, pname, owner):
         self.pname = pname
