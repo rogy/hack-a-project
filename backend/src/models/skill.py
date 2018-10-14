@@ -8,6 +8,7 @@ class SkillModel(db.Model):
     title = db.Column(db.String())
 
     roles = db.relationship("RoleSkillAssociation", back_populates="skill")
+    users = db.relationship("UserSkillAssociation", back_populates="skill")
 
     def __init__(self, title):
         self.title = title

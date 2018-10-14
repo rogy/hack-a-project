@@ -8,6 +8,8 @@ class UserModel(db.Model):
     username = db.Column(db.String(80))
     password = db.Column(db.String(80))
 
+    skills = db.relationship('UserSkillAssociation', back_populates='user')
+
     def __init__(self, username, password):
         self.username = username
         self.password = password
