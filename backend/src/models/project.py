@@ -11,7 +11,8 @@ class ProjectModel(db.Model):
     # description = db.Column(db.String())
 
     owner = db.relationship('UserModel', back_populates='owned_projects')
-    roles = db.relationship('ProjectRoleAssociation', back_populates='role')
+    member = db.relationship('UserJoinedProjectAssociation', back_populates='project')
+    roles = db.relationship('ProjectRoleAssociation', back_populates='project')
 
     def __init__(self, pname, owner):
         self.pname = pname

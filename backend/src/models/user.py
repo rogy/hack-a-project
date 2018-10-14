@@ -10,6 +10,7 @@ class UserModel(db.Model):
 
     skills = db.relationship('UserSkillAssociation', back_populates='user')
     owned_projects = db.relationship('ProjectModel', back_populates='owner')
+    joined_projects = db.relationship('UserJoinedProjectAssociation', back_populates='member')
 
     def __init__(self, username, password):
         self.username = username
