@@ -6,10 +6,10 @@ from models.project import ProjectModel
 
 class Project(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('owner',
-                        type=str,
-                        required=True,
-                        help="")
+    # parser.add_argument('owner',
+    #                     type=str,
+    #                     required=True,
+    #                     help="")
 
     def get(self, pname):
         project = ProjectModel.find_by_name(pname)

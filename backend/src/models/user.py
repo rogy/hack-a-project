@@ -1,10 +1,13 @@
 from db import db
+from models.skill import SkillModel
+from models.user_skill import UserSkillAssociation
+from models.user_joined_project import UserJoinedProjectAssociation
 
 
 class UserModel(db.Model):
     __tablename__ = 'users'
 
-    uid = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
     password = db.Column(db.String(80))
 
