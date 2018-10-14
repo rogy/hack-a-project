@@ -9,6 +9,7 @@ class RoleModel(db.Model):
     description = db.Column(db.String())
 
     skills = db.relationship('RoleSkillAssociation', back_populates='role')
+    projects = db.relationship('ProjectRoleAssociation', back_populates='role')
 
     def __init__(self, title, description):
         self.title = title

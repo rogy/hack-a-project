@@ -10,6 +10,8 @@ class ProjectModel(db.Model):
     owner = db.Column(db.String(80))
     # description = db.Column(db.String())
 
+    roles = db.relationship('ProjectRoleAssociation', back_populates='role')
+
     def __init__(self, pname, owner):
         self.pname = pname
         self.owner = owner
