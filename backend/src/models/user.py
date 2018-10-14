@@ -8,8 +8,8 @@ class UserModel(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80))
-    password = db.Column(db.String(80))
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
 
     skills = db.relationship('UserSkillAssociation', back_populates='user')
     owned_projects = db.relationship('ProjectModel', back_populates='owner')

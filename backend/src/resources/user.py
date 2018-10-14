@@ -1,4 +1,7 @@
 from flask_restful import Resource, reqparse
+from flask_jwt import jwt_required, current_identity
+
+
 from models.user import UserModel
 
 
@@ -25,3 +28,7 @@ class UserRegister(Resource):
         user.save_to_db()
 
         return {"message": "User created successfull."}, 201
+
+    # # @jwt_required()
+    # def get(self):
+    #     return {"message": "Get user"}

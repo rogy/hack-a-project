@@ -10,20 +10,21 @@ class ProjectModel(db.Model):
 
     __tablename__ = 'projects'
     pid = db.Column(db.Integer, primary_key=True)
-    pname = db.Column(db.String(80))
+    pname = db.Column(db.String())
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    # description = db.Column(db.String())
+    description = db.Column(db.String())
 
     owner = db.relationship('UserModel', back_populates='owned_projects')
     members = db.relationship('UserJoinedProjectAssociation', back_populates='project')
     roles = db.relationship('ProjectRoleAssociation', back_populates='project')
 
-    def __init__(self, pname):
+    def __init__(self, pname, description, owner_id):
         self.pname = pname
-        # self.owner = owner
+        self.description = description
+        self.owner_id = owner_id
 
     def json(self):
-        return {'pname': self.pname}
+        return {'pname': self.pname, 'description': self.description, 'owner_id': self.owner_id}
 
     @classmethod
     def find_by_name(cls, pname):

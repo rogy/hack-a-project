@@ -20,7 +20,7 @@ def create_tables():
 
 jwt = JWT(app, authenticate, identity)
 
-api.add_resource(Project, '/project/<string:pname>')
+api.add_resource(Project, '/project')
 api.add_resource(ProjectList, '/projects')
 
 api.add_resource(UserRegister, '/register')
