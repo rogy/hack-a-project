@@ -7,9 +7,10 @@ class ProjectModel(db.Model):
     __tablename__ = 'projects'
     pid = db.Column(db.Integer, primary_key=True)
     pname = db.Column(db.String(80))
-    owner = db.Column(db.String(80))
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.uid'))
     # description = db.Column(db.String())
 
+    owner = db.relationship('UserModel', back_populates='owned_projects')
     roles = db.relationship('ProjectRoleAssociation', back_populates='role')
 
     def __init__(self, pname, owner):

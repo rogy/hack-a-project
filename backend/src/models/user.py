@@ -9,6 +9,7 @@ class UserModel(db.Model):
     password = db.Column(db.String(80))
 
     skills = db.relationship('UserSkillAssociation', back_populates='user')
+    owned_projects = db.relationship('ProjectModel', back_populates='owner')
 
     def __init__(self, username, password):
         self.username = username
