@@ -1,6 +1,5 @@
 from db import db
 
-from models.role import RoleModel
 from models.project_role import ProjectRoleAssociation
 from models.role_skill import RoleSkillAssociation
 

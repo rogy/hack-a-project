@@ -2,6 +2,7 @@ from flask_restful import Resource, reqparse
 from flask_jwt import jwt_required, current_identity
 
 from models.project import ProjectModel
+from models.role import RoleModel
 
 
 class Project(Resource):
@@ -15,6 +16,11 @@ class Project(Resource):
                         required=True,
                         help="Project description is missing")
 
+    parser.add_argument('roles',
+                        required=True,
+                        action='append',
+                        help="Project roles is missing")
+
     @jwt_required()
     def get(self, pname):
         project = ProjectModel.find_by_name(pname)
@@ -25,12 +31,20 @@ class Project(Resource):
     @jwt_required()
     def post(self):
         data = Project.parser.parse_args()
-        project = ProjectModel(data['pname'], data['description'], current_identity)
+        project = ProjectModel(data['pname'], data['description'], int(current_identity))  # TODO: fix this <class 'werkzeug.local.LocalProxy'> to int problem
 
-        # try:
-        project.save_to_db()
-        # except(error):
-        # return {"message": "An error occured inserting the project"}, 500
+        # for rolestr in data['roles']:
+        #     rolejson = eval(rolestr)
+        #     role = RoleModel(rolejson['title'], rolejson['description'])
+        #     try:
+        #         role.save_to_db()
+        #     except:
+        #         return {"message": "An error occured inserting the role"}, 500
+
+        try:
+            project.save_to_db()
+        except:
+            return {"message": "An error occured inserting the project"}, 500
         return project.json(), 201
 
     @jwt_required()

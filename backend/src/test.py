@@ -57,10 +57,15 @@ class ProjectModel(db.Model):
 db.create_all()
 
 user = UserModel("abc", "asdf")
+
 something = ProjectModel("name", "description", 1)
+something.save_to_db()
+
+something = ProjectModel("name1", "description", 1)
+something.save_to_db()
+
+something = ProjectModel("name2", "description", 1)
 something.save_to_db()
 
 for item in something.query.all():
     print(item.pname)
-
-# db.session.commit()
