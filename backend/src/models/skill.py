@@ -5,16 +5,16 @@ class SkillModel(db.Model):
 
     __tablename__ = 'skills'
     sid = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String())
+    name = db.Column(db.String(), unique=True)
 
     roles = db.relationship("RoleSkillAssociation", back_populates="skill")
     users = db.relationship("UserSkillAssociation", back_populates="skill")
 
-    def __init__(self, title):
-        self.title = title
+    def __init__(self, name):
+        self.name = name
 
     def json(self):
-        return {'title': self.title}
+        return {'name': self.name}
 
     # @classmethod
     # def fine_by_title(cls, title):

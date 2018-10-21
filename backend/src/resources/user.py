@@ -32,3 +32,10 @@ class UserRegister(Resource):
     # # @jwt_required()
     # def get(self):
     #     return {"message": "Get user"}
+
+
+class UserList(Resource):
+    """docstring for ProjectList"""
+
+    def get(self):
+        return {'UserList': [user.json() for user in UserModel.query.all()]}

@@ -4,7 +4,7 @@ from flask_jwt import JWT
 
 from security import authenticate, identity
 from resources.project import Project, ProjectList
-from resources.user import UserRegister
+from resources.user import UserRegister, UserList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -20,9 +20,10 @@ def create_tables():
 
 jwt = JWT(app, authenticate, identity)
 
-api.add_resource(Project, '/project')
-# api.add_resource(Project, '/project/<string:pname>')
+# api.add_resource(Project, '/project')
+api.add_resource(Project, '/project/<string:pname>')
 api.add_resource(ProjectList, '/projects')
+api.add_resource(UserList, '/users')
 
 api.add_resource(UserRegister, '/register')
 
